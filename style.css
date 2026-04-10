@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root{
+    --maisEscuroDarkMode: #15173D;
+    --cor1DarkMode : #982598;
+    --cor2DarkMode : #E491C9;
+    --cor3DarkMode : #F1E9E9;
+    
+    --maisClaroLightMode: #FFF2E0;
+    --cor1LightMode : #C0C9EE;
+    --cor2LightMode: #A2AADB;
+    --cor3LightMode : #898AC4;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background-color: var(--maisEscuroDarkMode);
+    color: var(--cor3DarkMode);
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.lista{
+    margin: 50px;
+    display: flex;
+    justify-content: left;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.animeDestacado {
+    margin: 25px;
+}
+
+.animeDestacado img {
+    width: auto;
+    height: 400px;
+    transition: all 0.3s ease;
+}
+
+.animeDestacado p {
+    font-size: 24px;
+    text-align: center;    
+}
+
+.animeDestacadoMenor{
+    margin: 25px;
+}
+
+.animeDestacadoMenor img {
+    width: auto;
+    height: 200px;
+    transition: all 0.3s ease;
+
+}
+
+.animeCard {
+    color: var(--cor3DarkMode);
+    border-radius: 10px;
+    width: 250px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 25px;
+}
+
+.animeCard img{
+    margin: 15px;
+    width: auto;
+    height: 250px;
+    transition: all 0.3s ease;
+    border-radius: 2%;
+}
+
+.animeCard img:hover {
+    transform: scale(1.2);
+    transition: all 0.3s ease;
+}
+
+.animeCard img:hover + p {
+    padding-top: 20px;
+}
+
+
+.animeCard p{
+    transition: all 0.3s ease;
+}
