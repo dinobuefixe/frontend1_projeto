@@ -4,46 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AnimeFlix</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cards.css">
+    <link rel="stylesheet" href="css/anime.css">
+    <link rel="stylesheet" href="css/swiper.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
 </head>
+
 <body>
+    <main>
+        <div id="listaDestacados" class="lista">
+                <div class="user_welcome">
+                    <h1>Bem-vindo!</h1>
+                </div>
+            </div>
 
-    <div class="lista">
-        <div class="animeDestacado">
-            <img src="onepiece.jpg" alt="one piece">
-            <p>One Piece</p>
-        </div>
-        <div class="animeDestacadoMenor">
-            <img src="onepiece.jpg" alt="one piece">
-            <p>One Piece</p>
-        </div>
-        <div class="animeDestacadoMenor">
-            <img src="onepiece.jpg" alt="one piece">
-            <p>One Piece</p>
-        </div>
-        <div class="animeDestacadoMenor">
-            <img src="onepiece.jpg" alt="one piece">
-            <p>One Piece</p>
-        </div>
-    </div>
-    
+            <div id="listaCards" class="lista">
+            </div>
 
-    <div class="lista">
-        <div class="animeCard">
-            <img src="dragon_ball.jpg" alt="dragoes">
-            <p>Dragon Ball</p>
-        </div>
-        <div class="animeCard">
-            <img src="dragon_ball.jpg" alt="dragoes">
-            <p>Dragon Ball</p>
-        </div>
-        <div class="animeCard">
-            <img src="dragon_ball.jpg" alt="dragoes">
-            <p>Dragon Ball</p>
-        </div>
-    </div>
-    
 
-    
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper"></div>
+        </div>
+    </main>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+
+<script src="index.js"></script>
+<script src="menu.js"></script>
+
 </body>
 </html>

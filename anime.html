@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página do Anime</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cards.css">
+    <link rel="stylesheet" href="css/anime.css">
+</head>
+<body>
+
+
+<body>
+<div class="page">
+
+    <div class="col-esquerda">
+        <img id="animeCapa" class="anime-capa" src="" alt="Capa do Anime">
+
+        <h1 id="animeTitulo">Carregando...</h1>
+
+        <div class="info-grid">
+            <div><strong>Nota Global:</strong> <span id="notaGlobal"></span></div>
+            <div><strong>Episódios:</strong> <span id="episodios"></span></div>
+            <div><strong>Temporadas:</strong> <span id="temporadas"></span></div>
+            <div><strong>Lançamento:</strong> <span id="lancamento"></span></div>
+            <div><strong>Ranking:</strong> <span id="ranking"></span></div>
+            <div><strong>Popularidade:</strong> <span id="popularidade"></span></div>
+        </div>
+    </div>
+
+    <div class="col-direita">
+        <div class="review-box">
+            <h2>Review</h2>
+            <textarea id="review" placeholder="Escreve a tua review..."></textarea>
+        </div>
+
+        <div class="nota-section">
+            <label>Nota:</label>
+            <input type="range" id="nota" min="0" max="10" step="1">
+            <span id="notaValor">5</span>
+        </div>
+
+        <h2>Campos pessoais</h2>
+
+        <div class="pessoais">
+            <label>Episódios vistos:</label>
+            <input type="range" id="episodiosVistos" min="0" max="100">
+            <span id="episodiosVistosValor">0</span>
+
+            <label>Temporadas vistas:</label>
+            <input type="range" id="temporadasVistas" min="0" max="10">
+            <span id="temporadasVistasValor">0</span>
+
+            <button id="guardar">Guardar</button>
+        </div>
+    </div>
+
+</div>
+
+    <script src="index.js"></script>
+    <script src="menu.js"></script>
+    <script src="anime.js"></script>
+</body>
+</html>

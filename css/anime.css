@@ -1,0 +1,64 @@
+.container {
+    max-width: 900px;
+    margin: auto;
+}
+
+.anime-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.anime-capa {
+    width: 250px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.review-box textarea {
+    width: 100%;
+    height: 120px;
+    border-radius: 8px;
+    padding: 10px;
+    border: none;
+    margin-top: 10px;
+}
+
+.nota-section {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.info-grid {
+    margin-top: 25px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    background: rgba(255,255,255,0.05);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.pessoais {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input[type="range"] {
+    width: 100%;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    background: #982598;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}

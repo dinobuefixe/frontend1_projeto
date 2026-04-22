@@ -1,0 +1,84 @@
+/* CARDS */
+#listaCards {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    pointer-events: none;
+}
+
+.animeCard {
+    margin-top: -50px;
+    margin: 30px;
+    width: 200px;
+    text-align: center;
+}
+
+.animeCard img.capaAnime {
+    width: 200px;
+    height: 300px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.animeCard img:hover {
+    transform: scale(1.2);
+}
+
+.animeCard img:hover + p {
+    padding-top: 30px;
+}
+
+/* LISTAS */
+.lista {
+    margin-top: 25px;
+    margin-bottom: -50px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+
+
+/* DESTACADO GRANDE */
+.animeDestacado {
+    margin: 20px;
+    text-align: center;
+}
+
+.animeDestacado iframe {
+    aspect-ratio: 16 / 9;
+    height: 425px;
+    width: calc(425px * 16 / 9);
+    max-width: auto;
+    border: none;
+    border-radius: 10px;
+    margin-left: -125px;
+    margin-right: -125px;
+}
+
+.animeDestacado p {
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+/* DESTAQUES MENORES */
+.animeDestacadoMenor {
+    margin: 25px;
+    margin-left: 150px;
+    width: 350px;
+    text-align: center;
+}
+
+.wallpaper {
+    aspect-ratio: 16 / 9;
+    width: calc(250px * 16 / 9);
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    margin-top: 150px;
+    text-align: center;
+}
+
