@@ -11,27 +11,31 @@ class UserMenuTheme extends HTMLElement {
 
         this.shadowRoot.innerHTML = `
             <link rel="stylesheet" href="css/menu.css">
-                <header>
-                    <nav class="navbar">
-                        <div class="user-menu">
-                            <img src="user.png" alt="User" class="user-btn" id="userBtn">
-                            
-                            <div class="menu" id="menu">
-                                <ul>
-                                    <li><a href="#">Biblioteca</a></li>
-                                    <li><a href="#">Conta</a></li>
-                                    <li><a href="index.html">Voltar</a></li>
-                                </ul>
 
-                                <label class="switch">
-                                    <input type="checkbox" id="themeToggle">
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
+            <a href="index.html" class="logo-container">
+                <img src="logo.png" alt="Logo" class="logo">
+            </a>
+
+            <header>
+                <nav class="navbar">
+                    <div class="user-menu">
+                        <img src="user.png" alt="User" class="user-btn" id="userBtn">
+                        
+                        <div class="menu" id="menu">
+                            <ul>
+                                <li><a href="#">Biblioteca</a></li>
+                            </ul>
+
+                            <label class="switch">
+                                <input type="checkbox" id="themeToggle">
+                                <span class="slider"></span>
+                            </label>
                         </div>
-                    </nav>
-                </header>
+                    </div>
+                </nav>
+            </header>
         `;
+
     }
 
     connectedCallback() {

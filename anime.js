@@ -1,60 +1,102 @@
-const animeInfo = document.getElementById("animeInfo");
-
-if (animeInfo) {
+document.addEventListener("DOMContentLoaded", () => {
     const params = new URLSearchParams(window.location.search);
     const animeId = params.get("id");
 
-    animeInfo.innerHTML = `
-        <h1>Anime ID: ${animeId}</h1>
-        <p>Aqui vais carregar os dados do anime com este ID.</p>
-    `;
-}
+    let animeNome = "";
+    let reviewExistenteId = null; // ← se existir review, guardamos aqui
 
-const params = new URLSearchParams(window.location.search);
-const animeId = params.get("id");
+    async function carregarAnime() {
+        if (!animeId) return;
 
-async function carregarAnime() {
-    const res = await fetch(`https://api.jikan.moe/v4/anime/${animeId}`);
-    const json = await res.json();
-    const anime = json.data;
+        const res = await fetch(`https://api.jikan.moe/v4/anime/${animeId}`);
+        const json = await res.json();
+        const anime = json.data;
 
-    document.getElementById("animeCapa").src = anime.images.jpg.large_image_url;
-    document.getElementById("animeTitulo").textContent = anime.title;
-    document.getElementById("notaGlobal").textContent = anime.score || "N/A";
-    document.getElementById("episodios").textContent = anime.episodes || "N/A";
-    document.getElementById("temporadas").textContent = anime.season || "N/A";
-    document.getElementById("lancamento").textContent = anime.year || "N/A";
-    document.getElementById("ranking").textContent = anime.rank || "N/A";
-    document.getElementById("popularidade").textContent = anime.popularity || "N/A";
+        animeNome = anime.title;
 
-    // sliders pessoais
-    document.getElementById("episodiosVistos").max = anime.episodes || 100;
-}
+        document.getElementById("animeCapa").src = anime.images.jpg.large_image_url;
+        document.getElementById("animeTitulo").textContent = anime.title;
+        document.getElementById("notaGlobal").textContent = anime.score || "N/A";
+        document.getElementById("episodios").textContent = anime.episodes || "N/A";
+        document.getElementById("temporadas").textContent = anime.season || "N/A";
+        document.getElementById("lancamento").textContent = anime.year || "N/A";
+        document.getElementById("ranking").textContent = anime.rank || "N/A";
+        document.getElementById("popularidade").textContent = anime.popularity || "N/A";
+    }
 
-carregarAnime();
+    carregarAnime();
 
-// Atualizar valores dos sliders
-document.getElementById("nota").addEventListener("input", e => {
-    document.getElementById("notaValor").textContent = e.target.value;
-});
+    // Slider da nota
+    const notaInput = document.getElementById("nota");
+    const notaValor = document.getElementById("notaValor");
 
-document.getElementById("episodiosVistos").addEventListener("input", e => {
-    document.getElementById("episodiosVistosValor").textContent = e.target.value;
-});
+    notaInput.value = 5;
+    notaValor.textContent = 5;
 
-document.getElementById("temporadasVistas").addEventListener("input", e => {
-    document.getElementById("temporadasVistasValor").textContent = e.target.value;
-});
+    notaInput.addEventListener("input", e => {
+        notaValor.textContent = e.target.value;
+    });
 
-// Guardar dados pessoais
-document.getElementById("guardar").addEventListener("click", () => {
-    const dados = {
-        review: document.getElementById("review").value,
-        nota: document.getElementById("nota").value,
-        episodiosVistos: document.getElementById("episodiosVistos").value,
-        temporadasVistas: document.getElementById("temporadasVistas").value
-    };
+    const guardarBtn = document.getElementById("guardar");
+    const reviewInput = document.getElementById("review");
 
-    localStorage.setItem(`anime_${animeId}`, JSON.stringify(dados));
-    alert("Guardado!");
+    // 🔥 1. Verificar se já existe review deste anime
+    async function carregarReviewExistente() {
+        const res = await fetch(`https://69de96e1d6de26e119281675.mockapi.io/api/projects/project?animeId=${animeId}`);
+        const reviews = await res.json();
+
+        // Se NÃO existir review → deixa tudo vazio
+        if (reviews.length === 0) {
+            reviewInput.value = "";
+            notaInput.value = 5;
+            notaValor.textContent = 5;
+            reviewExistenteId = null;
+            return;
+        }
+
+        // Se existir review → preencher inputs
+        const r = reviews[0];
+        reviewExistenteId = r.id;
+
+        reviewInput.value = r.review || "";
+        notaInput.value = r.nota || 5;
+        notaValor.textContent = r.nota || 5;
+    }
+
+
+    carregarReviewExistente();
+
+    // 🔥 2. Guardar ou atualizar review
+    guardarBtn.addEventListener("click", async () => {
+        const dados = {
+            animeId: animeId,
+            animeNome: animeNome,
+            review: reviewInput.value.trim(),
+            nota: notaInput.value
+        };
+
+        let url = "https://69de96e1d6de26e119281675.mockapi.io/api/projects/project";
+        let metodo = "POST";
+
+        // Se já existe review → UPDATE
+        if (reviewExistenteId) {
+            url += `/${reviewExistenteId}`;
+            metodo = "PUT";
+        }
+
+        try {
+            const res = await fetch(url, {
+                method: metodo,
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(dados)
+            });
+
+            if (!res.ok) throw new Error("Erro ao enviar review");
+
+            alert(reviewExistenteId ? "Review atualizada!" : "Review criada!");
+        } catch (erro) {
+            console.error(erro);
+            alert("Erro ao guardar review");
+        }
+    });
 });
