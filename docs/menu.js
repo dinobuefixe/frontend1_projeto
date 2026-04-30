@@ -23,7 +23,7 @@ class UserMenuTheme extends HTMLElement {
                         
                         <div class="menu" id="menu">
                             <ul>
-                                <li><a href="#">Biblioteca</a></li>
+                                <li><a href="biblioteca.html">Biblioteca</a></li>
                             </ul>
 
                             <label class="switch">

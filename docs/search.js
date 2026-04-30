@@ -1,6 +1,14 @@
 document.addEventListener("DOMContentLoaded", carregarDados);
 
 // ---------------------------------------------------------
+// FUNÇÃO PARA ABRIR A PÁGINA DO ANIME
+// ---------------------------------------------------------
+
+function abrirAnime(id) {
+    window.location.href = `anime.html?id=${id}`;
+}
+
+// ---------------------------------------------------------
 // 1. LOADERS
 // ---------------------------------------------------------
 
@@ -57,29 +65,6 @@ function criarLoaders() {
     }
 }
 
-// ---------------------------------------------------------
-// 2. BUSCAR ANIMES
-// ---------------------------------------------------------
-
-async function buscarAnimes() {
-    const res = await fetch("https://api.jikan.moe/v4/top/anime?page=1");
-    const json = await res.json();
-    return json.data || [];
-}
-
-// ---------------------------------------------------------
-// 3. PREPARAR LISTA
-// ---------------------------------------------------------
-
-function prepararAnimes(lista) {
-    return lista
-        .map(a => ({ ...a, capaOriginal: a.images?.jpg?.large_image_url }))
-        .sort(() => Math.random() - 0.5);
-}
-
-// ---------------------------------------------------------
-// 4. SUBSTITUIR LOADERS
-// ---------------------------------------------------------
 
 function substituirLoader(elemento, html) {
     if (!elemento) return;
@@ -117,10 +102,10 @@ async function carregarDados() {
 
     substituirLoader(listaDestacados.children[0], `
         ${trailerURL
-            ? `<iframe src="${trailerURL}" allow="autoplay" allowfullscreen></iframe>`
-            : `<div class="wallpaper" style="background-image:url('${primeiro.capaOriginal}')"></div>`
+            ? `<iframe onclick="abrirAnime(${primeiro.mal_id})" src="${trailerURL}" allow="autoplay" allowfullscreen></iframe>`
+            : `<div onclick="abrirAnime(${primeiro.mal_id})" class="wallpaper" style="background-image:url('${primeiro.capaOriginal}')"></div>`
         }
-        <p>${primeiro.title_english || primeiro.title}</p>
+        <p onclick="abrirAnime(${primeiro.mal_id})">${primeiro.title_english || primeiro.title}</p>
     `);
 
     // 4 DESTAQUES MENORES
@@ -142,8 +127,8 @@ async function carregarDados() {
             : item.capaOriginal;
 
         substituirLoader(wrapperMenores.children[i], `
-            <div class="wallpaper" style="background-image:url('${thumb}')"></div>
-            <p>${item.title_english || item.title}</p>
+            <div onclick="abrirAnime(${item.mal_id})" class="wallpaper" style="background-image:url('${thumb}')"></div>
+            <p onclick="abrirAnime(${item.mal_id})">${item.title_english || item.title}</p>
         `);
     }
 
@@ -155,8 +140,8 @@ async function carregarDados() {
         if (!item) continue;
 
         substituirLoader(listaCards.children[i], `
-            <img class="capaAnime" src="${item.capaOriginal}">
-            <p>${item.title_english || item.title}</p>
+            <img onclick="abrirAnime(${item.mal_id})" class="capaAnime" src="${item.capaOriginal}" alt="${item.title}">
+            <p onclick="abrirAnime(${item.mal_id})">${item.title_english || item.title}</p>
         `);
     }
 
@@ -169,9 +154,9 @@ async function carregarDados() {
 
         substituirLoader(swiperWrapper.children[i], `
             <div class="swiper-card">
-                <img src="${item.capaOriginal}">
+                <img onclick="abrirAnime(${item.mal_id})" src="${item.capaOriginal}" alt="${item.title}">
             </div>
-            <p class="swiper-title">${item.title_english || item.title}</p>
+            <p onclick="abrirAnime(${item.mal_id})" class="swiper-title">${item.title_english || item.title}</p>
         `);
     }
 

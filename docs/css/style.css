@@ -28,7 +28,7 @@ html {
 }
 
 
-.user_welcome h1 {
+h1 {
     display: flex;
     justify-content: center;
     font-size: clamp(28px, 4vw, 42px);
